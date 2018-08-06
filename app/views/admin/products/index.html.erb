@@ -258,14 +258,14 @@
                   </a>
                 </li>
                 <li>
-                    <%=link_to 'Account Settings' ,user_path(@user.id)  %>
+                    <%=link_to 'Account Settings' ,edit_user_registration_path  %>
                   <!-- <a href="">
                     <i class="glyphicon glyphicon-user"></i>
                     Account Settings
                   </a> -->
                 </li>
                 <li>
-                  <a href="<%=users_path%>" target="_blank">
+                  <a href="<%=admin_users_path%>" target="_blank">
                     <i class="glyphicon glyphicon-ok"></i>
                     Manager Users
                   </a>

@@ -1,4 +1,14 @@
-class UsersController < ApplicationController
+class Admin::UsersController < ApplicationController
+  def index
+    @users = User.where(:role =>"normal")
+      # @user = current_user
+   authorize([:admin,@users])
+
+  end
+  def new
+    @user = User.new
+  end
+
   def show
     p current_user.id
     p "----------------"
@@ -10,12 +20,15 @@ class UsersController < ApplicationController
     @user = current_user
   end
   def edit
+    if current_user.role != "admin"
+      redirect_to root_path
+    end
+    else
       @user = User.find_by_id(params[:id])
   end
   def update
-    @user = User.find_by_id(params[:id])
+    @user = current_user
      if @user.update(user_params)
-       redirect_to admin_users_path
       else
       render 'edit'
     end
@@ -23,7 +36,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find_by_id(params[:id])
     @user.destroy
-    redirect_to admin_users_path
+    redirect_to users_path
   end
   def create
     @user = User.new(user_params)
