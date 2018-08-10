@@ -1,136 +1,924 @@
-<style>
-  .zoom:hover {
-    transform: scale(1.01);
-    border: #ff0000 solid 2px;
-    border: #ff0000 solid 2px;
-  }
-</style>
-<div class="row like-table-row" style="background-color:   #f0f0f0">
-  <!-- <a class="bottom" href="<%=new_product_path%>"> Thêm Sản Phẩm </a> -->
-  <nav class="navbar navbar-inverse" style="margin-bottom: 0px;">
-    <div class="navbar-header">
-      <strong>
-        <a class="navbar-brand" href="#">Mike.com.vn</a>
-      </strong>
-    </div>
-    <ul class="nav navbar-nav">
-      <li >
-        <a href="<%= root_path %>">Home</a>
-      </li>
-      <li>
-        <a href="#">Converse</a>
-      </li>
-      <li>
-        <a href="#">Vans</a>
-      </li>
-      <li>
-        <a href="#">Pladium</a>
-      </li>
-      <li>
-        <a href="#">Boots</a>
-      </li>
-    </ul>
-    <p style="float : right ;margin: 5px; padding: 5px">
-      <% if user_signed_in? == true %>
-        <div style="  width: 200px !important; float: right;">
-          <p style="color: white">
-            User :
-            <%= @user.email %></p>
-          <%=link_to 'My Profile' , edit_user_registration_path, :class => "btn btn-success "  %>
-          <%=link_to 'Sign Out' , destroy_user_session_path, :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure you want to logout ?' } %>
+<!DOCTYPE html>
+<html>
+  <head prefix="og:http://ogp.me/ns# fb:http://ogp.me/ns/fb# product:http://ogp.me/ns/product#">
+    <title>Drake - Converse Đăng Khoa</title>
+    <meta charset="UTF-8"/>
 
+    <!-- Cookies by http://i.ionline.su -->
+    <!-- End Cookies -->
 
-        </div>
+    <!-- <base href="https://drake.vn/"/> -->
+    <meta name="format-detection" content="telephone=no"/>
 
-      <%else %>
-        <a href="/users/sign_in" class="btn btn-success btn-lg" style="margin-right: 5px ;padding: 4px  ">
-          <span class="glyphicon glyphicon-log-in"></span>
-          Sign in
-        </a>
-        <a href="/users/sign_up" class="btn btn-success btn-lg" style="margin-right: 5px ;padding: 4px  ">
-          <!-- <a data-method="delete" href="<%# logout_path %>" class="btn btn-info btn-lg" > -->
-          <span class="glyphicon glyphicon-log-out"></span>
-          Resigter
-        </a>
-      <%end%>
+    <meta property="og:image" content=" " />
+<meta name=" viewport" content=" width="device-width," initial-scale="1" ">
+    <meta name="description" content="Hệ thống Drake - Converse Đăng Khoa.
+Chuyên phân phối sản phẩm chính hãng Converse - Vans - Palladium - Adidas trên toàn Việt Nam"/><meta name="keywords" content="Converse, Vans, Palladium, Adidas, Nike, Giày chính hãng, Converse giá rẻ"/>
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
 
-    </p>
-  </nav>
-  <div class="col-md-2 " style="background-color: #f0f0f0; height: 100%">
+    <link rel="alternate" href="https://drake.vn" hreflang="vi"/>
+    <link rel="alternate" href="https://drake.vn" hreflang="x-default"/>
+    <link rel="alternate" href="https://drake.vn" hreflang="en"/>
 
-    <div class="categories " style="padding-top: 10% ; height: 100%; margin-left: 10px">
-      <h3 style=" margin-bottom: 10px; margin-left: 30px;">Category</h3>
-      <ul class="list-group" style="margin: 20px;">
-        <% @sl.each do |q| %>
-          <li class="list-group-item"><%=q[:name]%>
-            <span class="badge">
-              <%=q[:sl]%></span></li>
-        <%end%>
-      </ul>
-    </div>
-  </div>
+    <link href="https://drake.vn" rel="canonical"/>
+    <link href="https://drake.vn/image/catalog/icon-1.png" rel="icon"/>
 
-  <div class=" col-md-9   " style=" padding-top: 0px; background-color: white">
-    <div class="tittle" style="height: 80px;  ">
+    <link rel="stylesheet" href="https://drake.vn/catalog/view/javascript/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://drake.vn/catalog/view/javascript/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://drake.vn/catalog/view/javascript/soconfig/css/lib.css">
+    <link rel="stylesheet" href="https://drake.vn/catalog/view/theme/batosa/css/ie9-and-up.css">
+    <link rel="stylesheet" href="https://drake.vn/catalog/view/theme/batosa/css/search.css">
+    <link rel="stylesheet" href="https://drake.vn/catalog/view/theme/batosa/fonts/glytus/glytus.css">
+    <link rel="stylesheet" href="https://drake.vn/catalog/view/javascript/jquery/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="https://drake.vn/catalog/view/javascript/jquery/owl-carousel/owl.transitions.css">
+    <link rel="stylesheet" href="https://drake.vn/catalog/view/javascript/so_page_builder/css/style_render_291.css">
+    <link rel="stylesheet" href="https://drake.vn/catalog/view/javascript/so_page_builder/css/style.css">
+    <link rel="stylesheet" href="https://drake.vn/admin/so_page_builder/assets/css/shortcodes.css">
+    <link rel="stylesheet" href="https://drake.vn/catalog/view/javascript/so_page_builder/css/style_render_301.css">
+    <link rel="stylesheet" href="https://drake.vn/catalog/view/javascript/so_newletter_custom_popup/css/style.css">
+    <link rel="stylesheet" href="https://drake.vn/catalog/view/javascript/so_megamenu/so_megamenu.css">
+    <link rel="stylesheet" href="https://drake.vn/catalog/view/javascript/so_megamenu/wide-grid.css">
+    <link rel="stylesheet" href="https://drake.vn/catalog/view/javascript/so_page_builder/css/style_render_249.css">
+    <link rel="stylesheet" href="https://drake.vn/catalog/view/javascript/so_searchpro/css/so_searchpro.css">
+    <link rel="stylesheet" href="https://drake.vn/catalog/view/theme/batosa/css/custom.css">
+    <link rel="stylesheet" href="https://drake.vn/catalog/view/javascript/soconfig/css/owl.carousel.css">
+    <link rel="stylesheet" href="https://drake.vn/catalog/view/theme/batosa/css/layout1/red.css">
+    <link rel="stylesheet" href="https://drake.vn/catalog/view/theme/batosa/css/responsive.css">
+    <script src="https://drake.vn/catalog/view/javascript/jquery/jquery-2.1.1.min.js"></script>
+    <script src="https://drake.vn/catalog/view/javascript/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://drake.vn/catalog/view/javascript/soconfig/js/libs.js"></script>
+    <script src="https://drake.vn/catalog/view/javascript/soconfig/js/so.system.js"></script>
+    <script src="https://drake.vn/catalog/view/theme/batosa/js/so.custom.js"></script>
+    <script src="https://drake.vn/catalog/view/theme/batosa/js/custom.js"></script>
+    <script src="https://drake.vn/catalog/view/theme/batosa/js/jquery.matchHeight-min.js"></script>
+    <script src="https://drake.vn/catalog/view/theme/batosa/js/classie.js"></script>
+    <script src="https://drake.vn/catalog/view/theme/batosa/js/common.js"></script>
+    <script src="https://drake.vn/catalog/view/javascript/soconfig/js/toppanel.js"></script>
+    <script src="https://drake.vn/catalog/view/javascript/soconfig/js/owl.carousel.js"></script>
+    <script src="https://drake.vn/catalog/view/javascript/jquery/owl-carousel/owl.carousel.min.js"></script>
+    <script src="https://drake.vn/catalog/view/javascript/jquery/jquery.countdown.min.js"></script>
+    <script src="https://drake.vn/catalog/view/javascript/so_page_builder/js/section.js"></script>
+    <script src="https://drake.vn/catalog/view/javascript/so_page_builder/js/swfobject.js"></script>
+    <script src="https://drake.vn/admin/so_page_builder/assets/js/shortcodes.js"></script>
+    <script src="https://drake.vn/catalog/view/javascript/so_megamenu/so_megamenu.js"></script>
+    <script src="https://drake.vn/catalog/view/javascript/soconfig/js/cpanel.js"></script>
 
-      <div style="float: right; position:relative;">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="">Sắp Xếp Sản Phẩm
-          <span class="caret"></span></button>
-        <ul class="dropdown-menu" style=" padding-right: -5px;">
-          <li>
-            <a href="/?sort_by=title-ascending">Theo Tên: Từ A đến Z</a>
-          </li>
-          <li>
-            <a href="/?sort_by=title-descending">Theo Tên: Từ Z đến A</a>
-          </li>
-          <li>
-            <a href="/?sort_by=price-ascending">Theo Giá: Thấp đến cao</a>
-          </li>
-          <li>
-            <a href="/?sort_by=price-descending">Theo Giá: Cao đến thấp</a>
-          </li>
-        </ul>
-      </div>
-      <h2>
-        <p style="float: left">All Products</p>
-      </h2>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto:300,400,400i,700&amp;amp;subset=vietnamese' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+      body {
+  font-family: Roboto, sans-serif;
+}
+    </style>
 
-    </div>
-    <% @products.each do |p| %>
-      <div>
-        <a href="<%= product_path(p)%>">
-          <div class="prod zoom" style="background-color:#f4f4f4;width: 270px;  height: 320px; float: left ;margin:7px ; border-color: gray;">
-            <img width="100%" style=" height:200px; display: block; " src="<%= p.image %>" alt="">
-            <a href="<%= product_path(p)%>" class="fa fa-search btn btn-primary zoom "></a>
-            <a class="fa fa-cart-plus btn btn-primary" aria-hidden="true"></a>
-          </br>
-          <br>
-          <%a= p.name %>
-            <strong>
-              <%if a.length > 60%>
-                <%= a[0,60]+"..."%>
-              <%else%>
-                <%= a%>
-              <% end  %>
-            </strong>
+    <div id="fb-root"></div>
+    <script>
+      (function (d, s, id) {
+  var js,
+          fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id))
+          return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9";
+        fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+    </script>
+    <style type="text/css">
+      .wstore li {
+}
 
-            <p>
-              <strong style="color: red">Giá:</strong>
-              <%= number_to_currency((p.price), unit: "VND", format: "%n %u")%></p>
-            <!-- <h3><%=link_to 'Edit', edit_product_path(p), :class => "btn btn-warning"%></h3> -->
+.store-block li a p:last-child {
+  display: none;
+}
+    </style>
 
-            <!-- <p> <strong >Chi Tiết Sản Phẩm:<br/></strong> <% if p.description.present? %> <%= p.description.html_safe %> <% end %> <br> <%#= p.description.html_safe if p.description%> <%#= p.description.present? ? p.description.html_safe : "" %> <%#=
-            p.description.try(:html_safe)%> </p> -->
-            <!-- <h3><%=link_to 'Show', product_path(p), :class => "btn btn-success"%></h3> <h3><%=link_to 'Delete' , product_path(p), :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %> </h3> -->
-            <!-- <h3><%=link_to 'Delete' , product_path(p), :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></h3> -->
-            <%# if policy(p).destroy? %>
-              <!-- <td><%#= link_to 'Destroy', p,method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
-              <%# end %>
-              </a>
+    <script>
+      (function (i, s, o, g, r, a, m) {
+  i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+          (i[r].q = i[r].q || []).push(arguments)
+},
+i[r].l = 1 * new Date();
+        a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-104369809-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+  </head>
+
+  <body class="common-home ltr res layout-1  ">
+    <div id="wrapper" class="">
+
+      <header id="header" class="">
+        <!-- HEADER TOP -->
+        <div class="header-top compact-hidden">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 hidden-sm hidden-xs header-top-left"></div>
+              <div class="col-md-6 col-sm-12 header-top-right">
+                <ul class="list-inline pull-right">
+                  <li class="navbar-phone">Hotline:
+                    <a href="tel:1800.0080 ">1800.0080
+                    </a>
+                  </li>
+                  <li>
+                    <a href="<%=new_user_registration_path%>">
+                      <i class="fa fa-lock"></i>
+                    </i>
+                    Đăng Ký</a>
+                </li>
+                <li>
+                  <a href="users/sign_in">
+                    <i class="fa fa-user"></i>
+                    Đăng Nhập</a>
+                </li>
+              </ul>
             </div>
-
           </div>
-        <% end %>
+        </div>
+      </div>
+      <div class="header-center compact-hidden">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="languages-box">
+                <form action="https://drake.vn/index.php?route=common/language/language" method="post" enctype="multipart/form-data" id="form-language">
+                  <ul class="list-language">
+                    <li>
+                      <button class="btn btn-link language-select current " type="button" name="vi-vn">
+                        VNI</button>
+                    </li>
+                    <li>
+                      <button class="btn btn-link language-select" type="button" name="en-gb">
+                        ENG</button>
+                    </li>
+                  </ul>
+                  <input type="hidden" name="code" value=""/>
+                  <input type="hidden" name="redirect" value="common/home"/>
+                </form>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="logo">
+                <a href="/"><img src="https://image.ibb.co/cCPdBU/logo.png" alt="logo" border="0"></a>
+              </div>
+            </div>
+            <div class="col-sm-3 text-right">
+              <a href="https://drake.vn/account/wishlist" id="wishlist-total" title="Danh sách Yêu thích">
+                <i class="fa fa-heart-o"></i>
+              </a>
+              <div id="cart" class="btn-shopping-cart">
+                <a data-loading-text="Đang Xử lý..." class="btn-group  dropdown-toggle" data-toggle="dropdown">
+                  <div class="shopcart">
+                    <span class="handle pull-left"></span>
+                    <span class="text-shopping-cart cart-total-full">
+                      0
+                    </span>
+                  </div>
+                </a>
+
+                <ul class="dropdown-menu pull-right shoppingcart-box">
+                  <li>
+                    <p class="text-center empty" style="font-weight:300;">Giỏ Hàng đang trống!</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="notify-top">
+          <div class="container">
+            <div class="popup-box">
+              <!-- <div id="popup0" class="owl-carousel" style="opacity: 1;"> <div class="item"> Miễn phí vận chuyển toàn quốc </div> <div class="item"> Đăng ký hoặc gọi 1800.0080 để cập nhật chương trình khuyến mãi </div> <div class="item"> Email hỗ trợ:
+              support@drake.vn </div> </div> -->
+              <script type="text/javascript">
+                <!--
+                $(function ($) {
+var $nav = $("#popup0");
+                  $nav.each(function () {
+                    $(this).owlCarousel2({
+                      nav: true,
+                      dots: false,
+                      slideBy: 1,
+                      margin: 10,
+                      loop: true,
+                      autoplay: true,
+                      autoplayTimeout: 4500,
+                      smartSpeed: 550,
+                      navText: [
+                        '<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'
+                      ],
+                      responsive: {
+                        0: {
+                          items: 1
+},
+600: {
+items: 1
+},
+1000: {
+items: 1
+}
+                      }
+                    });
+                  })
+
+                });
+
+-->
+              </script>
+            </div>
+          </div>
+        </div>
       </div>
 
+      <div class="header-bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="top-nav">
+                <div class="responsive megamenu-style-dev ">
+                  <nav class="navbar-default">
+                    <div class=" container-megamenu  horizontal">
+                      <div class="navbar-header">
+                        <button type="button" id="show-megamenu" data-toggle="collapse" class="navbar-toggle">
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                        </button>
+                      </div>
+
+                      <div class="megamenu-wrapper">
+
+                        <span id="remove-megamenu" class="fa fa-times"></span>
+
+                        <div class="megamenu-pattern">
+                          <div class="container">
+                            <ul class="megamenu" data-transition="slide" data-animationtime="250">
+
+                              <!-- <li class="home"> <a href="https://drake.vn"> <i class="fa fa-home"></i> </a> </li> -->
+
+                              <li class=' with-sub-menu hover'>
+                                <p class='close-menu'></p>
+                                <a href='https://drake.vn/converse' class='clearfix'>
+                                  <strong>
+                                    Converse
+                                  </strong>
+
+                                  <b class='caret'></b>
+                                </a>
+                                <div class="sub-menu" style="width:250px">
+                                  <div class="content">
+                                    <div class="row">
+                                      <div class="col-sm-12">
+                                        <div class="html ">
+                                          <p>
+                                            <a href="converse">All Converse</a>
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="border"></div>
+                                    <div class="row ">
+                                      <div class="col-sm-12">
+                                        <div class="categories ">
+                                          <div class="row">
+                                            <div class="col-sm-12 hover-menu">
+                                              <div class="menu">
+                                                <ul>
+                                                  <li>
+                                                    <a href="https://drake.vn/converse/sneaker" onclick="window.location = 'https://drake.vn/converse/sneaker';" class="main-menu">SNEAKER</a>
+                                                  </li>
+                                                  <li>
+                                                    <a href="https://drake.vn/converse/classic" onclick="window.location = 'https://drake.vn/converse/classic';" class="main-menu">CLASSIC</a>
+                                                  </li>
+                                                  <li>
+                                                    <a href="https://drake.vn/converse/chuck-ii" onclick="window.location = 'https://drake.vn/converse/chuck-ii';" class="main-menu">CHUCK II</a>
+                                                  </li>
+                                                  <li>
+                                                    <a href="https://drake.vn/converse/chuck-1970s" onclick="window.location = 'https://drake.vn/converse/chuck-1970s';" class="main-menu">CHUCK 1970S</a>
+                                                  </li>
+                                                  <li>
+                                                    <a href="https://drake.vn/converse/cons-one-star" onclick="window.location = 'https://drake.vn/converse/cons-one-star';" class="main-menu">CONS - ONE STAR</a>
+                                                  </li>
+                                                  <li>
+                                                    <a href="https://drake.vn/converse/jack-purcell" onclick="window.location = 'https://drake.vn/converse/jack-purcell';" class="main-menu">JACK PURCELL</a>
+                                                  </li>
+                                                  <li>
+                                                    <a href="https://drake.vn/converse/dainty-for-women" onclick="window.location = 'https://drake.vn/converse/dainty-for-women';" class="main-menu">DAINTY FOR WOMEN</a>
+                                                  </li>
+                                                  <li>
+                                                    <a href="https://drake.vn/converse/kid" onclick="window.location = 'https://drake.vn/converse/kid';" class="main-menu">KID</a>
+                                                  </li>
+                                                  <li>
+                                                    <a href="https://drake.vn/converse/rubber-chuck" onclick="window.location = 'https://drake.vn/converse/rubber-chuck';" class="main-menu">RUBBER CHUCK</a>
+                                                  </li>
+                                                  <li>
+                                                    <a href="https://drake.vn/converse/sale" onclick="window.location = 'https://drake.vn/converse/sale';" class="main-menu">SALE</a>
+                                                  </li>
+                                                  <li>
+                                                    <a href="https://drake.vn/converse/accessories-apparel" onclick="window.location = 'https://drake.vn/converse/accessories-apparel';" class="main-menu">ACCESSORIES &amp; APPAREL<b class="fa fa-angle-right"></b>
+                                                    </a>
+                                                    <ul>
+                                                      <li>
+                                                        <a href="https://drake.vn/converse/accessories-apparel/clothing" onclick="window.location = 'https://drake.vn/converse/accessories-apparel/clothing';">CLOTHING</a>
+                                                      </li>
+                                                      <li>
+                                                        <a href="https://drake.vn/converse/accessories-apparel/bags" onclick="window.location = 'https://drake.vn/converse/accessories-apparel/bags';">BAGS</a>
+                                                      </li>
+                                                      <li>
+                                                        <a href="https://drake.vn/converse/accessories-apparel/cap" onclick="window.location = 'https://drake.vn/converse/accessories-apparel/cap';">CAP</a>
+                                                      </li>
+                                                      <li>
+                                                        <a href="https://drake.vn/converse/accessories-apparel/socks" onclick="window.location = 'https://drake.vn/converse/accessories-apparel/socks';">SOCKS</a>
+                                                      </li>
+                                                      <li>
+                                                        <a href="https://drake.vn/converse/accessories-apparel/shoelaces" onclick="window.location = 'https://drake.vn/converse/accessories-apparel/shoelaces';">SHOELACES</a>
+                                                      </li>
+                                                    </ul>
+                                                  </li>
+                                                  <li>
+                                                    <a href="https://drake.vn/converse/sandal" onclick="window.location = 'https://drake.vn/converse/sandal';" class="main-menu">SANDAL</a>
+                                                  </li>
+                                                </ul>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class=' with-sub-menu hover'>
+                                <p class='close-menu'></p>
+                                <a href='https://drake.vn/vans' class='clearfix'>
+                                  <strong>
+                                    Vans
+                                  </strong>
+
+                                  <b class='caret'></b>
+                                </a>
+                                <div class="sub-menu" style="width:250px">
+                                  <div class="content">
+                                    <div class="row">
+                                      <div class="col-sm-12">
+                                        <div class="html ">
+                                          <p>
+                                            <a href="vans">All Vans</a>
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="border"></div>
+                                    <div class="row ">
+                                      <div class="col-sm-12">
+                                        <div class="categories ">
+                                          <div class="row">
+                                            <div class="col-sm-12 hover-menu">
+                                              <div class="menu">
+                                                <ul>
+                                                  <li>
+                                                    <a href="https://drake.vn/vans/sneaker" onclick="window.location = 'https://drake.vn/vans/sneaker';" class="main-menu">SNEAKER</a>
+                                                  </li>
+                                                  <li>
+                                                    <a href="https://drake.vn/vans/classic" onclick="window.location = 'https://drake.vn/vans/classic';" class="main-menu">CLASSIC</a>
+                                                  </li>
+                                                  <li>
+                                                    <a href="https://drake.vn/vans/sale" onclick="window.location = 'https://drake.vn/vans/sale';" class="main-menu">SALE</a>
+                                                  </li>
+                                                  <li>
+                                                    <a href="https://drake.vn/vans/accessories-apparel" onclick="window.location = 'https://drake.vn/vans/accessories-apparel';" class="main-menu">ACCESSORIES &amp; APPAREL<b class="fa fa-angle-right"></b>
+                                                    </a>
+                                                    <ul>
+                                                      <li>
+                                                        <a href="https://drake.vn/vans/accessories-apparel/clothing" onclick="window.location = 'https://drake.vn/vans/accessories-apparel/clothing';">CLOTHING</a>
+                                                      </li>
+                                                      <li>
+                                                        <a href="https://drake.vn/vans/accessories-apparel/bags" onclick="window.location = 'https://drake.vn/vans/accessories-apparel/bags';">BAGS</a>
+                                                      </li>
+                                                      <li>
+                                                        <a href="https://drake.vn/vans/accessories-apparel/cap" onclick="window.location = 'https://drake.vn/vans/accessories-apparel/cap';">CAP</a>
+                                                      </li>
+                                                      <li>
+                                                        <a href="https://drake.vn/vans/accessories-apparel/socks" onclick="window.location = 'https://drake.vn/vans/accessories-apparel/socks';">SOCKS</a>
+                                                      </li>
+                                                    </ul>
+                                                  </li>
+                                                </ul>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class=' with-sub-menu hover'>
+                                <p class='close-menu'></p>
+                                <a href='https://drake.vn/palladium' class='clearfix'>
+                                  <strong>
+                                    Palladium
+                                  </strong>
+
+                                  <b class='caret'></b>
+                                </a>
+                                <div class="sub-menu" style="width:250px">
+                                  <div class="content">
+                                    <div class="row">
+                                      <div class="col-sm-12">
+                                        <div class="html ">
+                                          <p>
+                                            <a href="palladium">All Palladium</a>
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="border"></div>
+                                    <div class="row ">
+                                      <div class="col-sm-12">
+                                        <div class="categories ">
+                                          <div class="row">
+                                            <div class="col-sm-12 hover-menu">
+                                              <div class="menu">
+                                                <ul>
+                                                  <li>
+                                                    <a href="https://drake.vn/palladium/sneaker" onclick="window.location = 'https://drake.vn/palladium/sneaker';" class="main-menu">SNEAKER</a>
+                                                  </li>
+                                                  <li>
+                                                    <a href="https://drake.vn/palladium/classic" onclick="window.location = 'https://drake.vn/palladium/classic';" class="main-menu">CLASSIC</a>
+                                                  </li>
+                                                  <li>
+                                                    <a href="https://drake.vn/palladium/waterproof" onclick="window.location = 'https://drake.vn/palladium/waterproof';" class="main-menu">WATERPROOF</a>
+                                                  </li>
+                                                  <li>
+                                                    <a href="https://drake.vn/palladium/sale" onclick="window.location = 'https://drake.vn/palladium/sale';" class="main-menu">SALE</a>
+                                                  </li>
+                                                  <li>
+                                                    <a href="https://drake.vn/palladium/accessories-apparel" onclick="window.location = 'https://drake.vn/palladium/accessories-apparel';" class="main-menu">ACCESSORIES &amp; APPAREL</a>
+                                                  </li>
+                                                </ul>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="https://drake.vn/' with-sub-menu hover'">
+                                <p class='close-menu'></p>
+                                <a href='https://drake.vn/other' class='clearfix'>
+                                  <strong>
+                                    Other
+                                  </strong>
+
+                                  <b class='caret'></b>
+                                </a>
+                                <div class="sub-menu" style="width:250px">
+                                  <div class="content">
+                                    <div class="row">
+                                      <div class="col-sm-12">
+                                        <div class="html ">
+                                          <p>
+                                            <a href="nike">All</a>
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="border"></div>
+                                    <div class="row ">
+                                      <div class="col-sm-12">
+                                        <div class="categories ">
+                                          <div class="row">
+                                            <div class="col-sm-12 hover-menu">
+                                              <div class="menu">
+                                                <ul>
+                                                  <li>
+                                                    <a href="https://drake.vn/other/accessories-apparel" onclick="window.location = 'https://drake.vn/other/accessories-apparel';" class="main-menu">ACCESSORIES &amp; APPAREL</a>
+                                                  </li>
+                                                </ul>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class='sale'>
+                                <p class='close-menu'></p>
+                                <a href='sale' class='clearfix'>
+                                  <strong>
+                                    Khuyến mãi
+                                  </strong>
+
+                                </a>
+                              </li>
+                              <li class=''>
+                                <p class='close-menu'></p>
+                                <a href='store' class='clearfix'>
+                                  <strong>
+                                    Cửa hàng
+                                  </strong>
+
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </nav>
+                </div>
+
+              </div>
+              <div id="search" class="input-group sb-search">
+                <div class="search-content">
+                  <input name="search" class="sb-search-input" placeholder="Tìm kiếm" type="text" value="">
+                  <button type="button" class="btn btn-default">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
+              </div>
+              <script type="text/javascript">
+                $('#search .opens').click(function () {
+$('#search').toggleClass('open');
+});
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navbar switcher -->
+    </header>
+    <div id="socialLogin"></div>
+    <div class="top-page">
+      <div id="carousel0" class="owl-carousel">
+        <!-- <div class="item text-center"> <a href="https://drake.vn/back-to-school-2018-uu-dai-lon"><img src="https://drake.vn/image/cache/catalog/slideshow/Back%20to%20school-1500x560.jpg" alt="sale" class=""/></a> < </div> -->
+      </div>
+
+      <script type="text/javascript">
+        $("#getting-started").countdown("2017/10/30 20:00", function (event) {
+$(this).html(event.strftime('<span> %H </span> : <span> %M </span> : <span> %S </span>'));
+});
+      </script>
+      <style type="text/css">
+        @import url('https://fonts.googleapis.com/css?family=Aldrich');
+        #getting-started {
+font-size: 40px;
+color: #dabc3a;
+position: absolute;
+top: 12%;
+z-index: 1000;
+left: 5%;
+font-family: 'Aldrich', sans-serif;
+font-weight: bold;
+text-shadow: 2px 2px #222;
+}
+
+#getting-started span {
+display: inline-block;
+border-radius: 5px;
+background: #222;
+text-align: center;
+width: 70px;
+height: 80px;
+line-height: 80px;
+text-transform: uppercase;
+}
+
+@media(max-width: 767px) {
+#getting-started {
+  font-size: 20px;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin-top: -30px;
+}
+
+#getting-started span {
+  width: 40px;
+  height: 60px;
+  line-height: 60px;
+}
+        }
+
+@media(max-width: 480px) {
+  #getting-started {
+    font-size: 18px;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin-top: -25px;
+  }
+
+  #getting-started span {
+    width: 35px;
+    height: 50px;
+    line-height: 50px;
+  }
+}
+      </style>
+      <script>
+        $(document).ready(function () {
+  var owl = $('#carousel0');
+          owl.owlCarousel({dots: true, nav: false, loop: true, items: 1, autoPlay: 3000
+})
+        })
+      </script>
+
+      <style type="text/css">
+        .owl-dots {
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  bottom: 0;
+}
+
+.owl-dot {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.owl-dot span {
+  width: 12px;
+  height: 12px;
+  border-radius: 12px;
+  background: #FFF;
+  display: inline-block;
+  opacity: 0.7;
+  position: relative;
+}
+
+.owl-dot span:before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 16px;
+  border: 1px solid #e1b221;
+  display: none;
+}
+
+.owl-dot.active span {
+  opacity: 1;
+}
+
+.owl-dot.active span:before {
+  display: block;
+}
+      </style>
+      <div class="clearfix"></div>
     </div>
+    <div class="container">
+      <div class="row">
+        <div id="content" class="col-md-12">
+          <div class="container page-builder-ltr">
+            <div class="row row_c0xj row-style bannerhome-2 ">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col_olfu col-style">
+                <!-- <div id="banner0" class="banners"> <div class="row"> <div class="col-sm-6 col-xs-6"> <div class="imagebanner"> <a href="https://drake.vn/converse/chuck-1970s/"><img
+                src="https://drake.vn/image/cache/catalog/banner/2%20trang%20chủ/570%20X%20237-570x237.jpg" alt="Banner 2 trang chủ" class="img-responsive"/></a> </div> </div> <div class="col-sm-6 col-xs-6"> <div class="imagebanner"> <a
+                href="https://drake.vn/converse/chuck-2/"><img src="https://drake.vn/image/cache/catalog/banner/2_sequel_desktop_live-570x237.jpg" alt="Banner 2 trang chủ" class="img-responsive"/></a> </div> </div> </div> </div> -->
+              </div>
+
+            </div>
+          </div>
+          <div class="container page-builder-ltr">
+            <div class="row row_lyce row-style new-product ">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col_vsb4 col-style">
+                <div class="new-product">
+                  <h3 class="shortcodeTitle">
+                    Sản phẩm mới
+                  </h3>
+                </div>
+
+                <div class="box-tab-home">
+                  <div class="box-nav">
+                    <ul class="nav nav-pills nav-stacked">
+                      <li class="active">
+                        <a data-toggle="tab" href="#mcproduct0_0">
+                          <span>Tất cả</span>
+                        </a>
+                      </li>
+                      <li class="">
+                        <a data-toggle="tab" href="#mcproduct0_1">
+                          <span>Nam</span>
+                        </a>
+                      </li>
+                      <li class="">
+                        <a data-toggle="tab" href="#mcproduct0_2">
+                          <span>Nữ
+                          </span>
+                        </a>
+                      </li>
+                      <li class="">
+                        <a data-toggle="tab" href="#mcproduct0_3">
+                          <span>Khuyến mãi</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="tab-content">
+                    <div id="mcproduct0_0" class="tab-pane fade in active">
+                      <% @products.each do |p| %>
+                        <div class="ltabs-item col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                          <div class="product-thumb">
+                            <div class="product-item-content">
+                              <div class="left-block">
+                                <div class="product-image-container second_img so-quickview">
+                                  <a href="<%= product_path(p)%>">
+                                    <img src="<%= p.image %>" alt="Chuck Taylor All Star Seasonal Color" title="Chuck Taylor All Star Seasonal Color" class="img-responsive"/>
+                                  </a>
+                                  <div class="box-label">
+                                    <span><img src="image/catalog/icons/NEW.png" alt=""></span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="right-block">
+                                <div class="caption">
+
+                                  <h4>
+                                    <a>
+                                      <%a= p.name %>
+                                      </a>
+                                    </h4>
+                                    <div class="sku">
+                                      # 162116
+                                    </div>
+                                    <div class="price">
+                                      <div>
+                                        <span class="tprice">Sale price:
+                                        </span>
+                                        <span class="price-new"><%= number_to_currency((p.price), unit: "đ", format: "%n %u")%></span>
+                                      </div>
+                                    </div>
+
+                                    <div class="description  hidden ">
+                                      <p>
+
+                                        &nbsp; Converse bắt đầu trở thành thương hiệu giày nổi tiếng khi giới thiệu những mẫu giày bóng rổ đầu tiên vào năm 1912. Trong những năm 50, giày Converse All Star trở thành đôi giày không thể..</p>
+                                    </div>
+                                    <div class="button-group">
+                                      <div class="button-group-content">
+                                        <!-- WISHLIST -->
+                                        <button class="addToCart" type="button" data-toggle="tooltip" title="Đặt hàng" onclick="cart.add('1594', '1');">
+                                          <span>Đặt hàng</span></button>
+                                        <!-- COMPARE -->
+                                        <button class="wishlist btn-button" type="button" data-toggle="tooltip" title="Thêm Yêu thích" onclick="wishlist.add('1594');">
+                                          <i class="fa fa-heart"></i>
+                                        </button>
+                                        <!-- CART -->
+                                        <button class="compare btn-button" type="button" data-toggle="tooltip" title="Thêm so sánh" onclick="compare.add('1594');">
+                                          <i class="fa fa-refresh"></i>
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        <% end %>
+
+                        <!--Start of Tawk.to Script-->
+                        <script type="text/javascript">
+                          var $_Tawk_API = {
+},
+                            $_Tawk_LoadStart = new Date();
+                          (function () {
+  var s1 = document.createElement("script"),
+                              s0 = document.getElementsByTagName("script")[0];
+                            s1.async = true;
+                            s1.src = 'https://embed.tawk.to/59449ee250fd5105d0c81805/default';
+                            s1.charset = 'UTF-8';
+                            s1.setAttribute('crossorigin', '*');
+                            s0.parentNode.insertBefore(s1, s0);
+})();
+                        </script>
+                        <!--End of Tawk.to Script-->
+
+                        <footer class="footer-container typefooter-1">
+
+                          <div class="footer-top">
+                            <section id="newsletter-footer" class=" section-color"></section>
+                            <section id="" class="footer section-color">
+                              <div class="container page-builder-ltr">
+                                <div class="container page-builder-ltr">
+                                  <div class="row row_5tlw row-style ">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col_6utb col-style">
+                                      <div id="brands0" class="brands-box" style="opacity: 1;">
+                                        <div class="item">
+                                          <a href="https://drake.vn/converse/"><img src="https://drake.vn/image/cache/catalog/logo/CONVERSE-114x88.jpg" alt="CONVERSE" class="img-responsive"/></a>
+                                        </div>
+                                        <div class="item">
+                                          <a href="https://drake.vn/vans/"><img src="https://drake.vn/image/cache/catalog/logo/VANS-114x88.jpg" alt="VANS" class="img-responsive"/></a>
+                                        </div>
+                                        <div class="item">
+                                          <a href="https://drake.vn/palladium/"><img src="https://drake.vn/image/cache/catalog/logo/PALLADIUM-114x88.jpg" alt="PALLADIUM" class="img-responsive"/></a>
+                                        </div>
+                                      </div>
+                                      <style type="text/css">
+                                        .brands-box {
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+.brands-box .item {
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+                                      </style>
+                                    </div>
+
+                                  </div>
+                                </div>
+                                <!-- <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 col_q51c col-style"> <div class="module html-block"> <h3 class="modtitle">Hỗ trợ thanh toán</h3> <div class="modcontent "> <p><img alt=""
+                                src="https://drake.vn/image/catalog/icons/paymentfooter.jpg"/></p> <p><img alt="" src="https://drake.vn/image/catalog/icons/Logo-Lazada.png" style="height:32px; width:100px"/></p> <p><img alt=""
+                                src="https://drake.vn/image/catalog/icons/bct1.png"/>&nbsp; &nbsp; &nbsp;</p> </div> </div> </div> -->
+
+                              </div>
+                            </div>
+                          </section>
+
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="box-pagination form-group">
+                              <ul class="pagination">
+                                <li class="active">
+                                  <span>1</span></li>
+                                <li>
+                                  <a href="https://drake.vn/all?page=2">2</a>
+                                </li>
+                                <li>
+                                  <a href="https://drake.vn/all?page=3">3</a>
+                                </li>
+                                <li>
+                                  <a href="https://drake.vn/all?page=4">4</a>
+                                </li>
+                                <li>
+                                  <a href="https://drake.vn/all?page=5">5</a>
+                                </li>
+                                <li>
+                                  <a href="https://drake.vn/all?page=6">6</a>
+                                </li>
+                                <li>
+                                  <a href="https://drake.vn/all?page=7">7</a>
+                                </li>
+                                <li>
+                                  <a href="https://drake.vn/all?page=8">8</a>
+                                </li>
+                                <li>
+                                  <a href="https://drake.vn/all?page=9">9</a>
+                                </li>
+                                <li>
+                                  <a href="https://drake.vn/all?page=2">&gt;</a>
+                                </li>
+                                <li>
+                                  <a href="https://drake.vn/all?page=26">&gt;|</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- FOOTER CENTER -->
+                        <div class="font-small special-color-dark pt-4"></div>
+
+                        <!-- FOOTER BOTTOM -->
+                        <div class="page-footer font-small special-color-dark pt-4">
+                          <div class="container">
+                            <div class="footer-bottom-content">
+                              <div class="row">
+                                <div class="col-sm-12 text-center">
+                                  ©Mike.com.vn - All Rights Reserved.
+
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </footer>
+
+                    </div>
+                  </body>
+                </html>
