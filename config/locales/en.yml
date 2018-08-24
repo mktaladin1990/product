@@ -23,12 +23,28 @@
 #
 # Instead, surround them with single quotes.
 #
-# en:
-#   'true': 'foo'
+
+
 #
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
-
 en:
- pundit:
-   default: 'You cannot perform this action.'
+  products:
+    index:
+      register: "Register"
+      login: "Login"
+      Seach: "Seach"
+    show:
+      Seach: "Seach"
+  admin:
+    products:
+      index:
+
+
+
+
+      # rapidly: "Nhanh chóng"
+      # useful: "Hữu dụng"
+  #
+  # pundit:
+  #  default: 'You cannot perform this action.'

@@ -25,6 +25,8 @@ class User::RegistrationsController < Devise::RegistrationsController
   def update
     p configure_account_update_params
     p "=================rtrtrtrtrtr"
+    @user.remove_avatar!
+    @user.save
     super
   end
 

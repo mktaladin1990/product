@@ -21,13 +21,16 @@ class Admin::UsersController < ApplicationController
   end
   def edit
     if current_user.role != "admin"
-      redirect_to root_path
+
+      # redirect_to root_path
     end
     else
       @user = User.find_by_id(params[:id])
+      @user.remove_avatar!
   end
   def update
     @user = current_user
+    @user.remove_avatar!
      if @user.update(user_params)
       else
       render 'edit'

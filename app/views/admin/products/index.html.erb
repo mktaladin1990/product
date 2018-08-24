@@ -107,33 +107,31 @@
           <div class="panel-heading">Menu</div>
           <div class="panel-body">
             <div class="list">
-              <a href="/">Home</a>
+              <a href="/"><%= t".Home"%></a>
             </div>
 
             <div class="list">
-              <a href="http://facebook.com/nguyenvanquang2708">Liên hệ</a>
+              <a href="http://facebook.com/nguyenvanquang2708"><%=t".Contact"%></a>
             </div>
 
             <div class="list">
-              <a href="#">Bình luận sản phẩm</a>
+              <a href="#"><%= t".Comment"%></a>
             </div>
 
             <div class="list">
-              <a href="#">Danh mục Bài viết</a>
+              <a href="#"><%=t".Post"%></a>
             </div>
+
+
             <div class="list">
-              <a href="#">Bài viết</a>
+              <a href="#"><%=t".Condition"%></a>
             </div>
 
             <div class="list">
-              <a href="#">Tình Trạng</a>
-            </div>
-
-            <div class="list">
-              <a href="#">Đơn Hàng</a>
+              <a href="#"><%=t".Order"%></a>
             </div>
             <div class="list">
-              <a href="#">Doanh Thu</a>
+              <a href="#"><%=t".Revenue"%></a>
             </div>
 
           </div>
@@ -145,12 +143,13 @@
           </center>
           <div class="row">
             <div class="col-sm-6">
-              <h3 style="padding:0px;margin:0px !important; width: 300px ;margin-left: 5px"><%=link_to 'Thêm Sản Phẩm', new_product_path(p), :class => "btn btn-info"%></h3>
+              <h3 style="padding:0px;margin:0px !important; width: 300px ;margin-left: 5px"><%=link_to t(".Add_Product"), new_product_path(p), :class => "btn btn-info"%></h3>
             </div>
             <div class="col-sm-3"></div>
             <div class="dropdown col-sm-3  ">
 
-              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Danh Mục Sản Phẩm
+              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><%= t".Category"%>
+
                 <span class="caret"></span></button>
               <ul class="dropdown-menu">
                 <% @categories.each do |c| %>
@@ -165,22 +164,22 @@
           <div style="background-color:white; height:25px;margin:7px;">
             <div class="col-sm-4 text-bar" style="padding:5px;">
               <center>
-                <p>HÌNH ẢNH</p>
+                <p><%=t".Image"%></p>
               </center>
             </div>
             <div class="col-sm-3 text-bar" style="padding:5px;">
               <center>
-                <p>CHI TIÊT</p>
+                <p><%=t".Detail"%></p>
               </center>
             </div>
             <div class="col-sm-2 text-bar" style="padding:5px;">
               <center>
-                <p>DANH MỤC</p>
+                <p><%=t".Category"%></p>
               </center>
             </div>
             <div class="col-sm-3 text-bar" style="padding:5px;">
               <center>
-                <p>QUẢN LÝ</p>
+                <p><%=t".Control"%></p>
               </center>
             </div>
           </div>
@@ -248,7 +247,7 @@
                       <%= @user.email %>
                     </div>
                     <div class="profile-usertitle-job">
-                      Chức Vụ :
+                      Position :
                       <%= @user.role%>
                     </div>
                   </div>
@@ -262,23 +261,23 @@
                       <li class="active">
                         <a href="#">
                           <i class="glyphicon glyphicon-home"></i>
-                          Overview
+                          <%= t".Overview"%>
                         </a>
                       </li>
                       <li>
-                        <%=link_to 'Account Settings' ,edit_user_registration_path %>
+                        <%=link_to t(".Account_setting") ,edit_user_registration_path %>
                         <!-- <a href=""> <i class="glyphicon glyphicon-user"></i> Account Settings </a> -->
                       </li>
                       <li>
                         <a href="<%=admin_users_path%>" target="_blank">
                           <i class="glyphicon glyphicon-ok"></i>
-                          Manager Users
+                          <%= t".Manager_Users"%>
                         </a>
                       </li>
                       <li>
                         <a href="">
                           <i class="glyphicon glyphicon-flag"></i>
-                          Help
+                          <%= t".Help"%>
                         </a>
                       </li>
                     </ul>

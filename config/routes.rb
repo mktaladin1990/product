@@ -12,14 +12,12 @@ devise_for :users, :controllers => {
            :sessions => "user/sessions",
            :registrations => "user/registrations"}
 # , :controllers => { :sessions => 'users/sessions' }
-
-
     resources :products
     resources :users
-
     namespace :admin do
       resources :products
-      resources :users  
+      resources :users
+      resources :blogs     
       get     "login"    => "products#index"
     end
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

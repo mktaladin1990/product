@@ -3,11 +3,6 @@
   <head prefix="og:http://ogp.me/ns# fb:http://ogp.me/ns/fb# product:http://ogp.me/ns/product#">
     <title>Drake - Converse Đăng Khoa</title>
     <meta charset="UTF-8"/>
-
-    <!-- Cookies by http://i.ionline.su -->
-    <!-- End Cookies -->
-
-    <!-- <base href="https://drake.vn/"/> -->
     <meta name="format-detection" content="telephone=no"/>
 
     <meta property="og:image" content=" " />
@@ -124,20 +119,34 @@ i[r].l = 1 * new Date();
               <div class="col-md-6 col-sm-12 header-top-right">
                 <ul class="list-inline pull-right">
                   <li class="navbar-phone">Hotline:
-                    <a href="tel:1800.0080 ">1800.0080
+                    <a href="tel:1800.0080 ">16969696969
                     </a>
                   </li>
-                  <li>
-                    <a href="<%=new_user_registration_path%>">
-                      <i class="fa fa-lock"></i>
-                    </i>
-                    Đăng Ký</a>
-                </li>
+                  <%if current_user.present? == false%>
+                      <li>
+                        <a href="<%=new_user_registration_path%>">
+                          <i class="fa fa-lock"></i>
+
+                        <%=t".register"%></a>
+                    </li>
+                    <li>
+                      <a href="users/sign_in">
+                        <i class="fa fa-user"></i>
+                        <%= t".login"%></a>
+                    </li>
+                  <%else%>
                 <li>
-                  <a href="users/sign_in">
+                  <a href="<%=edit_user_registration_path(current_user.id)%>">
                     <i class="fa fa-user"></i>
-                    Đăng Nhập</a>
-                </li>
+
+                  <%=t".My_Profile"%></a>
+              </li>
+              <li>
+                <a>
+                  <i class="fa fa-lock"></i>
+                   <%=link_to 'Logout',destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure you want to logout ?' } %>
+              </li>
+              <% end%>
               </ul>
             </div>
           </div>
@@ -150,14 +159,9 @@ i[r].l = 1 * new Date();
               <div class="languages-box">
                 <form action="https://drake.vn/index.php?route=common/language/language" method="post" enctype="multipart/form-data" id="form-language">
                   <ul class="list-language">
-                    <li>
-                      <button class="btn btn-link language-select current " type="button" name="vi-vn">
-                        VNI</button>
-                    </li>
-                    <li>
-                      <button class="btn btn-link language-select" type="button" name="en-gb">
-                        ENG</button>
-                    </li>
+
+                    <%= link_to "En", locale:"en" %>
+                    <%= link_to "Vi", locale:"vi" %>
                   </ul>
                   <input type="hidden" name="code" value=""/>
                   <input type="hidden" name="redirect" value="common/home"/>
@@ -166,7 +170,7 @@ i[r].l = 1 * new Date();
             </div>
             <div class="col-sm-6">
               <div class="logo">
-                <a href="/"><img src="https://image.ibb.co/cCPdBU/logo.png" alt="logo" border="0"></a>
+                <a href="/"><img src="https://image.ibb.co/cCPdBU/logo.png" alt="logo" border="0" style="height: 80px"></a>
               </div>
             </div>
             <div class="col-sm-3 text-right">
@@ -192,51 +196,7 @@ i[r].l = 1 * new Date();
             </div>
           </div>
         </div>
-        <div class="notify-top">
-          <div class="container">
-            <div class="popup-box">
-              <!-- <div id="popup0" class="owl-carousel" style="opacity: 1;"> <div class="item"> Miễn phí vận chuyển toàn quốc </div> <div class="item"> Đăng ký hoặc gọi 1800.0080 để cập nhật chương trình khuyến mãi </div> <div class="item"> Email hỗ trợ:
-              support@drake.vn </div> </div> -->
-              <script type="text/javascript">
-                <!--
-                $(function ($) {
-var $nav = $("#popup0");
-                  $nav.each(function () {
-                    $(this).owlCarousel2({
-                      nav: true,
-                      dots: false,
-                      slideBy: 1,
-                      margin: 10,
-                      loop: true,
-                      autoplay: true,
-                      autoplayTimeout: 4500,
-                      smartSpeed: 550,
-                      navText: [
-                        '<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'
-                      ],
-                      responsive: {
-                        0: {
-                          items: 1
-},
-600: {
-items: 1
-},
-1000: {
-items: 1
-}
-                      }
-                    });
-                  })
-
-                });
-
--->
-              </script>
-            </div>
-          </div>
-        </div>
       </div>
-
       <div class="header-bottom">
         <div class="container">
           <div class="row">
@@ -477,7 +437,7 @@ items: 1
                                 <p class='close-menu'></p>
                                 <a href='https://drake.vn/other' class='clearfix'>
                                   <strong>
-                                    Other
+                                    <%= t".Other" %>
                                   </strong>
 
                                   <b class='caret'></b>
@@ -518,7 +478,7 @@ items: 1
                                 <p class='close-menu'></p>
                                 <a href='sale' class='clearfix'>
                                   <strong>
-                                    Khuyến mãi
+                                    <%= t".Sale"%>
                                   </strong>
 
                                 </a>
@@ -527,9 +487,8 @@ items: 1
                                 <p class='close-menu'></p>
                                 <a href='store' class='clearfix'>
                                   <strong>
-                                    Cửa hàng
+                                    <%= t".Store"%>
                                   </strong>
-
                                 </a>
                               </li>
                             </ul>
@@ -543,7 +502,7 @@ items: 1
               </div>
               <div id="search" class="input-group sb-search">
                 <div class="search-content">
-                  <input name="search" class="sb-search-input" placeholder="Tìm kiếm" type="text" value="">
+                  <input name="search" class="sb-search-input" placeholder="<%=t".Seach"%>" type="text" value="">
                   <button type="button" class="btn btn-default">
                     <i class="fa fa-search"></i>
                   </button>
@@ -690,46 +649,54 @@ text-transform: uppercase;
       <div class="row">
         <div id="content" class="col-md-12">
           <div class="container page-builder-ltr">
-            <div class="row row_c0xj row-style bannerhome-2 ">
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col_olfu col-style">
-                <!-- <div id="banner0" class="banners"> <div class="row"> <div class="col-sm-6 col-xs-6"> <div class="imagebanner"> <a href="https://drake.vn/converse/chuck-1970s/"><img
-                src="https://drake.vn/image/cache/catalog/banner/2%20trang%20chủ/570%20X%20237-570x237.jpg" alt="Banner 2 trang chủ" class="img-responsive"/></a> </div> </div> <div class="col-sm-6 col-xs-6"> <div class="imagebanner"> <a
-                href="https://drake.vn/converse/chuck-2/"><img src="https://drake.vn/image/cache/catalog/banner/2_sequel_desktop_live-570x237.jpg" alt="Banner 2 trang chủ" class="img-responsive"/></a> </div> </div> </div> </div> -->
-              </div>
 
-            </div>
           </div>
+          <div class="">
+            <div class="row">
+            <div class="short-by-show form-inline text-center  col-md-12 col-sm-12">
+              <div class="form-group sort-by pull-right">
+                <select id="input-sort" class="form-control" onchange="location = this.value;">
+                                                            <option value="/"><%=t".Sort:Default"%></option>
+                                                            <option value="/?sort_by=title-ascending"><%=t".Sort:Name"%> (A - Z)</option>
+                                                            <option value="/?sort_by=title-descending"><%=t".Sort:Name"%>  (Z - A)</option>
+                                                            <option value="/?sort_by=price-ascending"><%=t".Sort:Price"%>  (<%=t".Low"%> &gt; <%=t".Hight"%>)</option>
+                                                            <option value="/?sort_by=price-descending"><%=t".Sort:Price"%>  (<%=t".Hight"%> &gt; <%=t".Low"%>)</option>
+
+                                            </select>
+              </div>
+            </div>
+            </div>
+      </div>
           <div class="container page-builder-ltr">
             <div class="row row_lyce row-style new-product ">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col_vsb4 col-style">
                 <div class="new-product">
                   <h3 class="shortcodeTitle">
-                    Sản phẩm mới
+                    <%= t".NEW_PRODUCTS"%>
                   </h3>
                 </div>
-
                 <div class="box-tab-home">
                   <div class="box-nav">
                     <ul class="nav nav-pills nav-stacked">
                       <li class="active">
                         <a data-toggle="tab" href="#mcproduct0_0">
-                          <span>Tất cả</span>
+                          <span><%= t".all"%></span>
                         </a>
                       </li>
                       <li class="">
                         <a data-toggle="tab" href="#mcproduct0_1">
-                          <span>Nam</span>
+                          <span><%= t".man"%></span>
                         </a>
                       </li>
                       <li class="">
                         <a data-toggle="tab" href="#mcproduct0_2">
-                          <span>Nữ
+                          <span><%= t".woman"%>
                           </span>
                         </a>
                       </li>
                       <li class="">
                         <a data-toggle="tab" href="#mcproduct0_3">
-                          <span>Khuyến mãi</span>
+                          <span><%= t".sale"%></span>
                         </a>
                       </li>
                     </ul>
@@ -755,17 +722,17 @@ text-transform: uppercase;
 
                                   <h4>
                                     <a>
-                                      <%a= p.name %>
+                                      <%= p.name %>
                                       </a>
                                     </h4>
                                     <div class="sku">
-                                      # 162116
+                                      # <%= p.id%>
                                     </div>
                                     <div class="price">
                                       <div>
-                                        <span class="tprice">Sale price:
+                                        <span class="tprice"><%= t".Sale_price:" %>
                                         </span>
-                                        <span class="price-new"><%= number_to_currency((p.price), unit: "đ", format: "%n %u")%></span>
+                                        <!-- <span class="price-new"><%= number_to_currency((p.price), unit: "đ", format: "%n %u")%></span> -->
                                       </div>
                                     </div>
 
@@ -796,128 +763,16 @@ text-transform: uppercase;
                           </div>
                         <% end %>
 
-                        <!--Start of Tawk.to Script-->
-                        <script type="text/javascript">
-                          var $_Tawk_API = {
-},
-                            $_Tawk_LoadStart = new Date();
-                          (function () {
-  var s1 = document.createElement("script"),
-                              s0 = document.getElementsByTagName("script")[0];
-                            s1.async = true;
-                            s1.src = 'https://embed.tawk.to/59449ee250fd5105d0c81805/default';
-                            s1.charset = 'UTF-8';
-                            s1.setAttribute('crossorigin', '*');
-                            s0.parentNode.insertBefore(s1, s0);
-})();
-                        </script>
-                        <!--End of Tawk.to Script-->
 
-                        <footer class="footer-container typefooter-1">
-
-                          <div class="footer-top">
-                            <section id="newsletter-footer" class=" section-color"></section>
-                            <section id="" class="footer section-color">
-                              <div class="container page-builder-ltr">
-                                <div class="container page-builder-ltr">
-                                  <div class="row row_5tlw row-style ">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col_6utb col-style">
-                                      <div id="brands0" class="brands-box" style="opacity: 1;">
-                                        <div class="item">
-                                          <a href="https://drake.vn/converse/"><img src="https://drake.vn/image/cache/catalog/logo/CONVERSE-114x88.jpg" alt="CONVERSE" class="img-responsive"/></a>
-                                        </div>
-                                        <div class="item">
-                                          <a href="https://drake.vn/vans/"><img src="https://drake.vn/image/cache/catalog/logo/VANS-114x88.jpg" alt="VANS" class="img-responsive"/></a>
-                                        </div>
-                                        <div class="item">
-                                          <a href="https://drake.vn/palladium/"><img src="https://drake.vn/image/cache/catalog/logo/PALLADIUM-114x88.jpg" alt="PALLADIUM" class="img-responsive"/></a>
-                                        </div>
-                                      </div>
-                                      <style type="text/css">
-                                        .brands-box {
-  margin-bottom: 35px;
-  text-align: center;
-}
-
-.brands-box .item {
-  display: inline-block;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-                                      </style>
-                                    </div>
-
-                                  </div>
-                                </div>
-                                <!-- <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 col_q51c col-style"> <div class="module html-block"> <h3 class="modtitle">Hỗ trợ thanh toán</h3> <div class="modcontent "> <p><img alt=""
-                                src="https://drake.vn/image/catalog/icons/paymentfooter.jpg"/></p> <p><img alt="" src="https://drake.vn/image/catalog/icons/Logo-Lazada.png" style="height:32px; width:100px"/></p> <p><img alt=""
-                                src="https://drake.vn/image/catalog/icons/bct1.png"/>&nbsp; &nbsp; &nbsp;</p> </div> </div> </div> -->
-
-                              </div>
-                            </div>
-                          </section>
-
-                        </div>
                         <div class="row">
-                          <div class="col-sm-12">
-                            <div class="box-pagination form-group">
-                              <ul class="pagination">
-                                <li class="active">
-                                  <span>1</span></li>
-                                <li>
-                                  <a href="https://drake.vn/all?page=2">2</a>
-                                </li>
-                                <li>
-                                  <a href="https://drake.vn/all?page=3">3</a>
-                                </li>
-                                <li>
-                                  <a href="https://drake.vn/all?page=4">4</a>
-                                </li>
-                                <li>
-                                  <a href="https://drake.vn/all?page=5">5</a>
-                                </li>
-                                <li>
-                                  <a href="https://drake.vn/all?page=6">6</a>
-                                </li>
-                                <li>
-                                  <a href="https://drake.vn/all?page=7">7</a>
-                                </li>
-                                <li>
-                                  <a href="https://drake.vn/all?page=8">8</a>
-                                </li>
-                                <li>
-                                  <a href="https://drake.vn/all?page=9">9</a>
-                                </li>
-                                <li>
-                                  <a href="https://drake.vn/all?page=2">&gt;</a>
-                                </li>
-                                <li>
-                                  <a href="https://drake.vn/all?page=26">&gt;|</a>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
+                          <div class="col-md-12">
+                          <center>
+                          <%= will_paginate @products, :class => "pagination"%>
+                          </center>
+                        </div>
                         </div>
 
-                        <!-- FOOTER CENTER -->
-                        <div class="font-small special-color-dark pt-4"></div>
-
-                        <!-- FOOTER BOTTOM -->
-                        <div class="page-footer font-small special-color-dark pt-4">
-                          <div class="container">
-                            <div class="footer-bottom-content">
-                              <div class="row">
-                                <div class="col-sm-12 text-center">
-                                  ©Mike.com.vn - All Rights Reserved.
-
-                                </div>
-
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                      </footer>
+                      
 
                     </div>
                   </body>

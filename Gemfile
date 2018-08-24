@@ -25,6 +25,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'font-awesome-sass'
 gem 'pundit'
+gem 'will_paginate', '~> 3.1.0'
 
 gem 'mysql2', '~> 0.4.4'
 gem 'bcrypt'

@@ -28,8 +28,33 @@ input
     <%= form.label :Linkimage %><br>
     <%= form.text_field :image %>
   </p>
-  <p>P
+  <p>
+    <%= form.label :Loại %><br>
+    <%= form.text_field :category_name %>
   </p>
+        <p>
+          <label>My Avatar</label>
+          <div class="row">
+              <% @avatars.each_with_index do |a, i| %>
+            <div class="col-md-3">
+
+              <img width="90%" style=" height:150px; display: block; " class="" src="<%=a.url%>" alt="">
+            <label>
+              <%#= form.check_box :remove_avatar, i %>
+              <td><%= check_box_tag "product[remove_avatar][]", i %></td>
+              Remove image
+            </label>
+          </div>
+          <%end%>
+          <h6>Upload a different photo...</h6>
+          <p>
+            <%= form.file_field :avatars, multiple: true %>
+
+          </p>
+        </div>
+
+        </p>
+
 
   <p>
     <%= form.submit %>

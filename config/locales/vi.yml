@@ -1,0 +1,45 @@
+vi:
+  products:
+    index:
+      register: "Đăng Ký"
+      login: "Đăng Nhập"
+      sort: "Sắp Xếp"
+      price: "Giá"
+      name: "Tến"
+      all: "Tất cả"
+      man: "Nam"
+      woman: "Nữ"
+      sale: "Khuyến Mãi"
+      Sort:Name: "Sắp Xếp Theo Tên"
+      Sort:Price: "Sắp Xếp Theo Giá"
+      Sort:Default: "Sắp Xếp Mặc Định"
+      Low: "Thấp"
+      Hight: "Cao"
+      NEW_PRODUCTS: "SẢN PHẨM MỚI"
+      Other: "Khác"
+      Sale: "Khuyến Mãi"
+      Store: "Cửa Hàng"
+      Seach: "Tìm Kiếm"
+      My_Profile: "Cá Nhân"
+      logout: "Đăng Xuất"
+
+
+  admin:
+    products:
+      index:
+        Home: "Trang Chủ"
+        Contact: "Liên Hệ"
+        Comment: "Bình Luận"
+        Post: "Bài Viết"
+        Condition: "Tình Trạng"
+        Order: "Đơn Hàng"
+        Revenue: "Doanh Thu "
+        Add_Product: "Thêm Sản Phẩm"
+        Category: "Danh Mục Sản Phẩm"
+        Image: "Hình Ảnh"
+        Detail: "Chi Tiết"
+        Control: "Điều Khiển"
+        Overview: "Tổng Quan"
+        Account_setting: "Cài Đặt TK"
+        Manager_Users: "Quản Lý Người Dùng"
+        Help: "Hỗ Trợ"

@@ -1,0 +1,83 @@
+
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+
+ <div class="container">
+
+  <!-- Collapse button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+  aria-expanded="false" aria-label="Toggle navigation">
+   <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse justify-content-center font-weight-bold" id="basicExampleNav">
+
+    <!-- Links -->
+    <ul class="navbar-nav">
+     <li class="nav-item">
+      <a class="nav-link" href="#">Home</a>
+     </li>
+     <li class="nav-item">
+      <a class="nav-link" href="#">About</a>
+     </li>
+     <li class="nav-item">
+      <a class="nav-link" href="#">Features</a>
+     </li>
+
+    </ul>
+    <!-- Links -->
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand px-lg-4 mr-0" href="#">
+     <img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" height="30" alt="">
+    </a>
+
+    <!-- Links -->
+    <ul class="navbar-nav">
+     <li class="nav-item">
+      <a class="nav-link" href="#">Blog</a>
+     </li>
+     <li class="nav-item">
+      <a class="nav-link" href="#">Pricing</a>
+     </li>
+     <li class="nav-item">
+      <a class="nav-link" href="#">Testimonials</a>
+     </li>
+    </ul>
+    <!-- Links -->
+
+   </div>
+
+</nav>
+<!--/.Navbar-->
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <% @blog.each do |b| %>
+      <div class="col-md-10" style="height: 250px">
+        <div class="col-md-3">
+
+        <%=link_to admin_blog_path(b) do %>
+        <img src="<%= b.image%>" alt="" style="width: 100%" >
+        <% end %>
+        </div>
+        <div class="col-md-9">
+          <%=link_to admin_blog_path(b) do %>
+        <h4><p href="<%=admin_blog_path(b)%>"> <%= b.title %></p></h4>
+          <% end %>
+          <p style="color : red"><%= b.created_at%></p>
+          <%a= b.content %>
+              <%if a.length > 600%>
+                <%= a[0,600]+"..."%>
+              <%else%>
+                <%=a%>
+              <% end  %>
+        </div>
+      </div>
+      <hr>
+      <div class="col-md-2"></div>
+    <%end%>
+  </div>
+  <div class="col-md-1"></div>
+</div>

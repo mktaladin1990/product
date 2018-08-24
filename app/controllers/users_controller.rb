@@ -1,16 +1,17 @@
 class UsersController < ApplicationController
-  def show
-    p current_user.id
-    p "----------------"
-    a= Integer(params[:id])
-    if  current_user.id != a
-      redirect_to root_path
-    end
-    else
-    @user = current_user
-  end
+  # def show
+  #   p current_user.id
+  #   p "----------------"
+  #   a= Integer(params[:id])
+  #   if  current_user.id != a
+  #     redirect_to root_path
+  #   end
+  #   else
+  #   @user = current_user
+  # end
   def edit
       @user = User.find_by_id(params[:id])
+
   end
   def update
     @user = User.find_by_id(params[:id])
