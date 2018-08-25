@@ -110,14 +110,13 @@ class ProductsController < ApplicationController
     authorize @product
     @product.destroy
     redirect_to products_path
-
   end
   #############################
   def show
     @product = Product.find_by_id(params[:id])
-    @avatars=Product.last.avatars
+    @avatars= Product.find_by_id(params[:id]).avatars
     # @category = Category.find_or_create_by(name: params[:category_name])
-
+    @comments = Comment.all
   end
   ##########################
   private
